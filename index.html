@@ -5,12 +5,12 @@
 	<title>Payslip Management</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<!--<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>-->
 	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>	
 	<script src="js/dist/ng-flow-standalone.js"></script>
 	<script type="text/javascript" src="js/moment.js"></script>		
-    <script  type="text/javascript" src="app.js"></script>
+   <!-- <script  type="text/javascript" src="app.js"></script>-->
 	<script  type="text/javascript" src="js/underscore-min.js"></script>
 	
 	<script type='text/javascript'>
@@ -136,7 +136,7 @@
 	</style>
 </head>
 
-<body ng-app="myApp">
+<body>
 <!-- Header -->
 <div id="header" >
 	<div class="shell">
@@ -168,7 +168,7 @@
 <!-- End Header -->
 
 <!-- Container -->
-<div id="container" ng-controller="FormCtrl">
+<div id="container">
 <div id="loaderDiv" loader ><img src="imgs/ajax-loader.gif" class="ajax-loader"/>
 </div>
 	<div class="shell">
@@ -198,7 +198,7 @@
             <div style="float:left;margin: 6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
                 <label>Employee <span style="color:red;">*</span></label>
             </div>
-			<select id="empName" ng-model="employeeDetails.selectedEmpId" ng-required="true" ng-options="employee.empNo as employee.firstName for employee in employeeDetails"ng-change="getEmployeeId(employeeDetails.selectedEmpId)" style="overflow: auto;width: 150px;">
+			<select id="empName" style="overflow: auto;width: 150px;">
                     <option value="">Select Employee</option>
                    </select>
 				
@@ -208,7 +208,7 @@
            <div style="float:left;margin:6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
                 <label>Year </label>
             </div>
-				<select  ng-model="employeeData.year" ng-required="true"  ng-options="year.label as year.label for year in yearList" ng-change="changeMonthList()">
+				<select >
                 <option value="">Select Year</option>
                 </select>
 		</div>
@@ -216,7 +216,7 @@
            <div style="float:left;margin: 6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
                 <label>Month </label>
             </div>
-				<select  ng-model="employeeData.month" ng-required="true" ng-options="month.label as month.label for month in monthList" ng-disabled="!employeeData.year" ng-change="updateTotalNoOfDays(employeeData.year,employeeData.month)">
+				<select  >
                 <option value="">Select Month</option>
                 </select>
 				         
@@ -226,12 +226,12 @@
 	<form class="form-inline" role="form" style="margin-top:20px;">
 	<div class="form-group">
            <div style="float:left;margin:6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
-                <label ng-model="employeeData.totalNoOfDays">Total Days :{{employeeData.totalNoOfDays}}</label>
+                <label >Total Days :</label>
             </div>
 	 </div>
 		<div class="form-group">
            <div style="float:left;margin:6px;width: 180px;text-align: right;font-weight:bold;font-size:15px;">
-                <label ng-model="employeeData.lopdays">LOP Days : {{employeeData.lopDays}}</label>
+                <label >LOP Days : </label>
             </div>
 		</div>
 		<!-- NO. OF DAYS IN MONTH -->
@@ -246,22 +246,22 @@
 				</div>
 		</form>
 </div>    
-		<table style="margin-top:10px;margin-bottom:20px;border-top:1px solid #CCCCCC;"width="100%" border="0" cellspacing="0" cellpadding="0" ng-show="showtable">
+		<table style="margin-top:10px;margin-bottom:20px;border-top:1px solid #CCCCCC;"width="100%" border="0" cellspacing="0" cellpadding="0" >
 		<caption>Employee Details</caption>
 						
 							<tr>
 								<th style="font-size:12px;background-image:none">Employee Name :</th>
-								<td><b>{{employeeData.firstName}} {{employeeData.lastName}}</b></td><th style="font-size:12px;background-image:none">Bank Account Number :</th>
-								<td><b>{{employeeData.bankAccountNo}}</b></td></tr>
+								<td><b></b></td><th style="font-size:12px;background-image:none">Bank Account Number :</th>
+								<td><b></b></td></tr>
 							<tr><th style="font-size:12px;background-image:none">Employee ID :</th>
-								<td><b>{{employeeData.empNo}}</b></td><th style="font-size:12px;background-image:none">Bank Name :</th>
-								<td><b>{{employeeData.bankName}}</b></td></tr>
+								<td><b></b></td><th style="font-size:12px;background-image:none">Bank Name :</th>
+								<td><b></b></td></tr>
 							<tr><th style="font-size:12px;background-image:none">PAN No. :</th>
-								<td><b>{{employeeData.panNo}}</b></td><th style="font-size:12px;background-image:none">Joining Date :</th>
-								<td><b>{{employeeData.joiningDate}}</b></td></tr>
+								<td><b></b></td><th style="font-size:12px;background-image:none">Joining Date :</th>
+								<td><b></b></td></tr>
 							<tr><th style="font-size:12px;background-image:none">PF No. :</th>
-								<td><b>{{employeeData.pfNumber}}</b></td><th style="font-size:12px;background-image:none">Designation :</th>		
-								<td><b>{{employeeData.designation}}</b></td></tr>
+								<td><b></b></td><th style="font-size:12px;background-image:none">Designation :</th>		
+								<td><b></b></td></tr>
 							</table>
 				
 					</div>
@@ -271,30 +271,30 @@
 						<table class="table" style="display:inline-block;width:48.%;border:1px solid #CCCCCC;" border="0" cellspacing="0" cellpadding="0">
 						<thead ><tr style="border-right:1px solid #CCCCCC;"><th style="min-width:280px;text-align: right;font-size:16px;">EARNINGS IN &#x20B9;<th></tr></thead>
 						<tbody style="border-top:1px solid #CCCCCC;">
-						<tr><td style="font-weight:bold;font-size:14px;">Basic :</td><td><input class="txt" type="text" onclick="this.select()"  ng-model="employeeData.basic" onkeypress="return isNumberKey(event)" value="{{employeeData.basic}}"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">HRA :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.hra"  onkeypress="return isNumberKey(event)" value="{{employeeData.hra}}"/></td></tr>
-						<tr ><td style="font-weight:bold;font-size:14px;">Medical :</td><td ng-model="employeeData.medical" >{{employeeData.medical}}<!--<input class="txt" type="text"  ng-model="employeeData.medical" value="{{employeeData.medical}}"/>--></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Conveyance :</td><td ng-model="employeeData.conveyence" >{{employeeData.conveyence}}<!--<input class="txt" type="text" ng-model="employeeData.conveyence"  value="{{employeeData.conveyence}}"/>--></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Exgratia :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.exgratia" onkeypress="return isNumberKey(event)" value="{{employeeData.exgratia}}"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">LTA :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.lta" onkeypress="return isNumberKey(event)" value="{{employeeData.lta}}"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Performance Bonus :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.performanceBonus" onkeypress="return isNumberKey(event)" value="{{employeeData.performanceBonus}}"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Other Allowances :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.otherAllowance" onkeypress="return isNumberKey(event)" value="{{employeeData.otherAllowance}}"/></td></tr>
-						<tr ng-model="employeeData.grossEarnings" class="summation"><td style="font-weight:bold;font-size:14px;">Gross Earnings :</td><td ng-model="employeeData.grossEarnings"><span   id="sum"></span></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Basic :</td><td><input class="txt" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">HRA :</td><td><input class="txt" type="text" onclick="this.select()"   onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr ><td style="font-weight:bold;font-size:14px;">Medical :</td><td  ><!--<input class="txt" type="text"  ng-model="employeeData.medical" value="{{employeeData.medical}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Conveyance :</td><td  ><!--<input class="txt" type="text" ng-model="employeeData.conveyence"  value="{{employeeData.conveyence}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Exgratia :</td><td><input class="txt" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">LTA :</td><td><input class="txt" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Performance Bonus :</td><td><input class="txt" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Other Allowances :</td><td><input class="txt" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr  class="summation"><td style="font-weight:bold;font-size:14px;">Gross Earnings :</td><td><span   id="sum"></span></td></tr>
 						</tbody>
 						</table>
 						
 					<table class="table" style=" display:inline-block;border:1px solid #CCCCCC;float:right;width:49%;" border="0" cellspacing="0" cellpadding="0">
 						<thead><tr><th style="min-width:280px;text-align: right;font-size:16px;">DEDUCTIONS IN &#x20B9;<th></tr></thead>
 						<tbody style="border-top:1px solid #CCCCCC;">
-						<tr><td style="font-weight:bold;font-size:14px;">PF Employee Contribution:</td><td ng-model="employeeData.pfEmployee">{{employeeData.pfEmployee}}<!--<input class="numericData" type="text" ng-model="employeeData.pfe" />--></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Professional Tax:</td><td ng-model="employeeData.professionalTax" >{{employeeData.professionalTax}}<!--<input class="numericData" type="text" ng-model="employeeData.ptax" value="{{employeeData.ptax}}"/>--></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">ESI:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.esi" value="{{employeeData.esi}}" onkeypress="return isNumberKey(event)"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">TDS:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.tds" onkeypress="return isNumberKey(event)" value="{{employeeData.tds}}"/></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;">Other Deductions:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.otherDeductions" onkeypress="return isNumberKey(event)" value="{{employeeData.otherDeductions}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">PF Employee Contribution:</td><td ><!--<input class="numericData" type="text" ng-model="employeeData.pfe" />--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Professional Tax:</td><td><!--<input class="numericData" type="text" ng-model="employeeData.ptax" value="{{employeeData.ptax}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">ESI:</td><td ><input class="numericData" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">TDS:</td><td ><input class="numericData" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Other Deductions:</td><td ><input class="numericData" type="text" onclick="this.select()"  onkeypress="return isNumberKey(event)" /></td></tr>
 						<tr><td style="height:161px;"></td><td></td></tr>
 						
-						<tr id="summation" ><td style="font-weight:bold;font-size:14px;">Total Deductions:</td><td ><span ng-model="employeeData.totalDeductions" id="sums"></span></td></tr>
-						<tr><td style="font-weight:bold;font-size:14px;color:red;">NET PAYABLE IN &#x20B9;:</td><td ><span  class="numericData" ng-model="employeeData.totalPayable" >{{employeeData.grossEarnings - employeeData.totalDeductions}}</span></td></tr>
+						<tr id="summation" ><td style="font-weight:bold;font-size:14px;">Total Deductions:</td><td ><span  id="sums"></span></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;color:red;">NET PAYABLE IN &#x20B9;:</td><td ><span  class="numericData"  ></span></td></tr>
 						</tbody>
 						</table>
 						</form>
@@ -304,11 +304,11 @@
 						<div style="float:left;margin: 6px;text-align: right;font-weight:bold;font-size:15px;margin-top:20px;">
 							<label>Comments :</label>
 						</div>
-						<TEXTAREA ROWS=6 COLS=120 ng-model="employeeData.comments" placeholder="Message" style="margin-top:20px;"></TEXTAREA>
+						<TEXTAREA ROWS=6 COLS=120  placeholder="Message" style="margin-top:20px;"></TEXTAREA>
 				</div>
 			</form>
 			<div class="wrapper">
-				<button ng-model="button"  ng-click="sendMail()" ng-disabled="(!employeeDetails.selectedEmpId)" id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Send Mail</button>
+				<button id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Send Mail</button>
 			</div>
 			
 				
