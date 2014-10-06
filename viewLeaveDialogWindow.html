@@ -1,0 +1,52 @@
+<div class="modal-dialog">
+   <div class="modal-content">
+      <div style="margin:10px;">
+			<button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style="font-weight:bold;">Leave Details</h4>
+      </div>
+      <div class="modal-body">
+	 
+       		 	<div class="table">
+				<div class="container">
+						<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;margin:10px;">Employee No.</div>
+                            <div class="span3" style="margin:10px;">{{employeeDetails.empNo}}</div>
+						</div>
+						<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;margin:10px;">Employee Name</div>
+                            <div class="span3" style="margin:10px;">{{employeeDetails.firstName}}  {{employeeDetails.lastName}}</div>
+						</div> 
+						<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;margin:10px;">Email Id</div>
+                            <div class="span3" style="margin:10px;">{{employeeDetails.emailId}}</div>
+						</div>
+				</div>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr >	
+					<th>FromDate</th>
+					<th>Todate</th>
+					<th>EncashedLeaves</th>
+					<th>LeaveType</th>
+					<th></th>
+				</tr>
+				
+				<tr ng-repeat="leave in leaveEmployeeDetails" >
+	     				<td>{{leave.fromDate}}</td>
+						<td>{{leave.toDate}}</td>
+						<td>{{leave.differenceBetweenFromDateToDate}}</td>
+					    <td>{{leave.leaveType}}</td>
+						<td><a ng-click="editLeave({{leave.empNo}},{{leave.uniqueId}})" id="urlPathEmployee" style="cursor: pointer;text-decoration:none;"  class="btn btn-small" title="Edit">Edit</a></td>
+						
+				</tr>
+				
+				</table>
+			</div>
+					
+      </div>
+      <div class="modal-footer">
+           <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+          
+	 </div>
+   </div>
+</div>
+ 

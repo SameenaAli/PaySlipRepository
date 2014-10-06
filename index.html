@@ -1,79 +1,342 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Payslip Management</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
+	
+	<script type='text/javascript'>
+	var PFValue;
+	$(document).ready(function () {
+		$("#sendbutton").click(function() {
+		    $("#sum").html(0);
+			$("#sums").html(0);
+			$('#resetForm')[0].reset();
+			$('#empName').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			$('#lopDays').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			
+   		}); 
+	});	
+	$(document).ready(function(){
+ 
+       
+        $(".txt").each(function() {
+			$(this).keyup(function(){
+                calculateSum();
+            });
+        });
+ 
+    });
+ function isNumberKey(evt){
+	
+    var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+    if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=46 && (charCode < 48 || charCode > 57 ))
+        return false;
+    return true;
+}
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Paysliprepository : ">
+    function calculateSum() {
+ 
+        var sum = 2050;
+		   $(".txt").each(function() {
+			if(!isNaN(this.value) && this.value.length!=0) {
+                sum += parseFloat(this.value);
+            }
+ 
+        });
+      	$("#sum").each(function() {
+			var element = angular.element($('#sum'));
+			var controller = element.controller();
+			var scope = element.scope();
+			scope.employeeData.grossEarnings = sum.toFixed(2);
+			PFValue=scope.employeeData.pfEmployee;
+			scope.$apply(function(){
+				scope.updateGrossEarning(scope.employeeData.grossEarnings);
+			});
+		});
+		  
+        $("#sum").html(sum.toFixed(2));
+		
+    }
+	$(document).ready(function(){
+ 
+        
+        $(".numericData").each(function() {
+				
+            $(this).keyup(function(){
+                calculateSum1();
+            });
+        });
+ 
+    });
+ 
+	function calculateSum1() {
+//alert(PFValue);
+        var sum1 = PFValue + 200;
+        
+        $(".numericData").each(function() {
+ 
+           
+            if(!isNaN(this.value) && this.value.length!=0) {
+                sum1 += parseFloat(this.value);
+            }
+ 
+        });
+		
+		$("#sums").each(function() {
+			var element = angular.element($('#sums'));
+			var controller = element.controller();
+			var scope = element.scope();
+			scope.employeeData.totalDeductions = sum1.toFixed(2);
+			scope.$apply(function(){
+				scope.updateTotalDeduction(scope.employeeData.totalDeductions);
+			});
+		});
+       
+        $("#sums").html(sum1.toFixed(2));
+		
+    }
+	
+	</script>
+	<style>
+	#loaderDiv {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 1100;
+   background-color: white;
+   opacity: .6;
+}
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+.ajax-loader {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -32px; /* -1 * image width / 2 */
+   margin-top: -32px; /* -1 * image height / 2 */
+   display: block;
+}
+	
 
-    <title>Paysliprepository</title>
-  </head>
+	</style>
+</head>
 
-  <body>
+<body ng-app="myApp">
+<!-- Header -->
+<div id="header" >
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="http://www.nthdimenzion.com/" target="_blank"><img src="imgs/logo.png"></a></h1>
+			<div id="top-navigation">
+				
+			</div>
+		</div>
+		
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+				<li><a href="index.html" class="active"><span>Generate Payslip</span></a></li>
+			    <li><a href="employeeDetails.html"><span>View Employees</span></a></li>
+			    <li><a href="newEmployee.html"><span>Add New Employee</span></a></li>
+				<li><a href="leaveManagement.html"><span>Leave Management</span></a></li>
+			   <li><a href="holidayList.html"><span>Holiday List</span></a></li>
+			   
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/SameenaAli/PaySlipRepository">View on GitHub</a>
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
 
-          <h1 id="project_title">Paysliprepository</h1>
-          <h2 id="project_tagline"></h2>
+<!-- Container -->
+<div id="container" ng-controller="FormCtrl">
+<div id="loaderDiv" loader ><img src="imgs/ajax-loader.gif" class="ajax-loader"/>
+</div>
+	<div class="shell">
+	<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+			<form novalidate name="paySlipForm">	
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">Generate Payslip</h2>
+						
+					</div>
+					<!-- End Box Head -->	
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/SameenaAli/PaySlipRepository/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/SameenaAli/PaySlipRepository/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+					<!-- Table -->
+					<div class="table" >
+					<div class="container">
+	
+    <form class="form-inline" role="form" style="margin-bottom:20px;">
+        <div class="form-group">
+            <div style="float:left;margin: 6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
+                <label>Employee <span style="color:red;">*</span></label>
+            </div>
+			<select id="empName" ng-model="employeeDetails.selectedEmpId" ng-required="true" ng-options="employee.empNo as employee.firstName for employee in employeeDetails"ng-change="getEmployeeId(employeeDetails.selectedEmpId)" style="overflow: auto;width: 150px;">
+                    <option value="">Select Employee</option>
+                   </select>
+				
+            
+        </div>
+		<div class="form-group">
+           <div style="float:left;margin:6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
+                <label>Year </label>
+            </div>
+				<select  ng-model="employeeData.year" ng-required="true"  ng-options="year.label as year.label for year in yearList" ng-change="changeMonthList()">
+                <option value="">Select Year</option>
+                </select>
+		</div>
+        <div class="form-group">
+           <div style="float:left;margin: 6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
+                <label>Month </label>
+            </div>
+				<select  ng-model="employeeData.month" ng-required="true" ng-options="month.label as month.label for month in monthList" ng-disabled="!employeeData.year" ng-change="updateTotalNoOfDays(employeeData.year,employeeData.month)">
+                <option value="">Select Month</option>
+                </select>
+				         
+        </div>
+		
+	</form>
+	<form class="form-inline" role="form" style="margin-top:20px;">
+	<div class="form-group">
+           <div style="float:left;margin:6px;width: 150px;text-align: right;font-weight:bold;font-size:15px;">
+                <label ng-model="employeeData.totalNoOfDays">Total Days :{{employeeData.totalNoOfDays}}</label>
+            </div>
+	 </div>
+		<div class="form-group">
+           <div style="float:left;margin:6px;width: 180px;text-align: right;font-weight:bold;font-size:15px;">
+                <label ng-model="employeeData.lopdays">LOP Days : {{employeeData.lopDays}}</label>
+            </div>
+		</div>
+		<!-- NO. OF DAYS IN MONTH -->
+	<!--	<div class="form-group">
+           <div style="float:left;margin:6px;width: 180px;text-align: right;font-weight:bold;font-size:15px;">
+                <label>NO Of Days :</label>
+            </div>
+			<input class="NoOfDays" type="text" ng-model="employeeData.NOD" value="{{employeeData.NOD}}" ng-change="updateNoOfDays(employeeData.year,employeeData.month)"/>
+        </div>-->
+		<div style="float:right;margin:10px;">
+				<span style="color:red;">*</span><span>indicates a required field</span>
+				</div>
+		</form>
+</div>    
+		<table style="margin-top:10px;margin-bottom:20px;border-top:1px solid #CCCCCC;"width="100%" border="0" cellspacing="0" cellpadding="0" ng-show="showtable">
+		<caption>Employee Details</caption>
+						
+							<tr>
+								<th style="font-size:12px;background-image:none">Employee Name :</th>
+								<td><b>{{employeeData.firstName}} {{employeeData.lastName}}</b></td><th style="font-size:12px;background-image:none">Bank Account Number :</th>
+								<td><b>{{employeeData.bankAccountNo}}</b></td></tr>
+							<tr><th style="font-size:12px;background-image:none">Employee ID :</th>
+								<td><b>{{employeeData.empNo}}</b></td><th style="font-size:12px;background-image:none">Bank Name :</th>
+								<td><b>{{employeeData.bankName}}</b></td></tr>
+							<tr><th style="font-size:12px;background-image:none">PAN No. :</th>
+								<td><b>{{employeeData.panNo}}</b></td><th style="font-size:12px;background-image:none">Joining Date :</th>
+								<td><b>{{employeeData.joiningDate}}</b></td></tr>
+							<tr><th style="font-size:12px;background-image:none">PF No. :</th>
+								<td><b>{{employeeData.pfNumber}}</b></td><th style="font-size:12px;background-image:none">Designation :</th>		
+								<td><b>{{employeeData.designation}}</b></td></tr>
+							</table>
+				
+					</div>
+					<!-- Table -->
+					<div style="margin-top:20px;">
+					<form id="resetForm">
+						<table class="table" style="display:inline-block;width:48.%;border:1px solid #CCCCCC;" border="0" cellspacing="0" cellpadding="0">
+						<thead ><tr style="border-right:1px solid #CCCCCC;"><th style="min-width:280px;text-align: right;font-size:16px;">EARNINGS IN &#x20B9;<th></tr></thead>
+						<tbody style="border-top:1px solid #CCCCCC;">
+						<tr><td style="font-weight:bold;font-size:14px;">Basic :</td><td><input class="txt" type="text" onclick="this.select()"  ng-model="employeeData.basic" onkeypress="return isNumberKey(event)" value="{{employeeData.basic}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">HRA :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.hra"  onkeypress="return isNumberKey(event)" value="{{employeeData.hra}}"/></td></tr>
+						<tr ><td style="font-weight:bold;font-size:14px;">Medical :</td><td ng-model="employeeData.medical" >{{employeeData.medical}}<!--<input class="txt" type="text"  ng-model="employeeData.medical" value="{{employeeData.medical}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Conveyance :</td><td ng-model="employeeData.conveyence" >{{employeeData.conveyence}}<!--<input class="txt" type="text" ng-model="employeeData.conveyence"  value="{{employeeData.conveyence}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Exgratia :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.exgratia" onkeypress="return isNumberKey(event)" value="{{employeeData.exgratia}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">LTA :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.lta" onkeypress="return isNumberKey(event)" value="{{employeeData.lta}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Performance Bonus :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.performanceBonus" onkeypress="return isNumberKey(event)" value="{{employeeData.performanceBonus}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Other Allowances :</td><td><input class="txt" type="text" onclick="this.select()" ng-model="employeeData.otherAllowance" onkeypress="return isNumberKey(event)" value="{{employeeData.otherAllowance}}"/></td></tr>
+						<tr ng-model="employeeData.grossEarnings" class="summation"><td style="font-weight:bold;font-size:14px;">Gross Earnings :</td><td ng-model="employeeData.grossEarnings"><span   id="sum"></span></td></tr>
+						</tbody>
+						</table>
+						
+					<table class="table" style=" display:inline-block;border:1px solid #CCCCCC;float:right;width:49%;" border="0" cellspacing="0" cellpadding="0">
+						<thead><tr><th style="min-width:280px;text-align: right;font-size:16px;">DEDUCTIONS IN &#x20B9;<th></tr></thead>
+						<tbody style="border-top:1px solid #CCCCCC;">
+						<tr><td style="font-weight:bold;font-size:14px;">PF Employee Contribution:</td><td ng-model="employeeData.pfEmployee">{{employeeData.pfEmployee}}<!--<input class="numericData" type="text" ng-model="employeeData.pfe" />--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Professional Tax:</td><td ng-model="employeeData.professionalTax" >{{employeeData.professionalTax}}<!--<input class="numericData" type="text" ng-model="employeeData.ptax" value="{{employeeData.ptax}}"/>--></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">ESI:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.esi" value="{{employeeData.esi}}" onkeypress="return isNumberKey(event)"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">TDS:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.tds" onkeypress="return isNumberKey(event)" value="{{employeeData.tds}}"/></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;">Other Deductions:</td><td ><input class="numericData" type="text" onclick="this.select()" ng-model="employeeData.otherDeductions" onkeypress="return isNumberKey(event)" value="{{employeeData.otherDeductions}}"/></td></tr>
+						<tr><td style="height:161px;"></td><td></td></tr>
+						
+						<tr id="summation" ><td style="font-weight:bold;font-size:14px;">Total Deductions:</td><td ><span ng-model="employeeData.totalDeductions" id="sums"></span></td></tr>
+						<tr><td style="font-weight:bold;font-size:14px;color:red;">NET PAYABLE IN &#x20B9;:</td><td ><span  class="numericData" ng-model="employeeData.totalPayable" >{{employeeData.grossEarnings - employeeData.totalDeductions}}</span></td></tr>
+						</tbody>
+						</table>
+						</form>
+					</div>
+					 <form class="form-inline" role="form" style="width: 980px;">
+					<div class="form-group" >
+						<div style="float:left;margin: 6px;text-align: right;font-weight:bold;font-size:15px;margin-top:20px;">
+							<label>Comments :</label>
+						</div>
+						<TEXTAREA ROWS=6 COLS=120 ng-model="employeeData.comments" placeholder="Message" style="margin-top:20px;"></TEXTAREA>
+				</div>
+			</form>
+			<div class="wrapper">
+				<button ng-model="button"  ng-click="sendMail()" ng-disabled="(!employeeDetails.selectedEmpId)" id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Send Mail</button>
+			</div>
+			
+				
+				</div>
+				<!-- End Box -->
+				
+</form>
+			</div>
+			<!-- End Content -->
+			
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages ******************SAMINA ALI******************.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Paysliprepository maintained by <a href="https://github.com/SameenaAli">SameenaAli</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+<!-- Footer -->
+<div id="footer" >
+	<div class="shell" >
+		<span class="left">&copy; 2014 - Nthdimenzion</span>
+		<span class="right">
+			Design by <a href="http://www.nthdimenzion.com/" target="_blank" >Nthdimenzion.com</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
 </html>
