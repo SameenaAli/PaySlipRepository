@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Payslip Management</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+    <script type='text/javascript' src='js/bootstrap-datepicker.js'></script>
+    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
+	<script>
+		function isAlphabetKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39 && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
+			return false;
+			return true;
+	}
+	function chkAlphNum(evt){
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0  )
+			return false;
+			return true;
+	}
+	function isNumberKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
+			return false;
+			return true;
+	}
+	
+	
+</script>	
+	 <style>
+    .thumbnailphoto  {
+      max-width: 200px; max-height: 180px;min-height:150px;min-width:200px; line-height: 20px; margin-bottom: 5px;
+    }
+  #loaderDiv {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 1100;
+   background-color: white;
+   opacity: .6;
+}
+
+.ajax-loader {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -32px; /* -1 * image width / 2 */
+   margin-top: -32px; /* -1 * image height / 2 */
+   display: block;
+}
+
+	</style>
+</head>
+
+<body ng-app="myApp" flow-init
+      flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+      flow-files-submitted="$flow.upload()">
+<!-- Header -->
+<div id="header" >
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="http://www.nthdimenzion.com/" target="_blank"><img src="imgs/logo.png"></a></h1>
+			<div id="top-navigation">
+				
+			</div>
+		</div>
+		
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+				<li><a href="index.html" ><span>Generate Payslip</span></a></li>
+			    <li><a href="employeeDetails.html"><span>View Employees</span></a></li>
+			    <li><a href="newEmployee.html" class="active"><span>Add New Employee</span></a></li>
+				<li><a href="leaveManagement.html"><span>Leave Management</span></a></li>
+			  <li><a href="holidayList.html" ><span>Holiday List</span></a></li>
+
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" ng-controller="AddNewEmployee">
+<!--<div id="loaderDiv" loader ></div>-->
+		<div id="loaderDiv" loader ><img src="imgs/ajax-loader.gif" class="ajax-loader"/></div>
+
+	<div class="shell">
+	<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+			<form novalidate name="newEmpForm">	
+				<!-- Box -->
+				<div class="box">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">Add New Employee Details</h2>
+						
+					</div>
+					<!-- End Box Head -->	
+					<div  style="float:right;margin:5px;">
+							<span style="color:red;font-weight:bold;">*</span><span>indicates a required field</span>
+						</div>
+					<!-- Table -->
+					<div class="table" >
+					
+					<div class="container" >
+					
+					<form name="newEmpReg" style="margin-bottom:20px;" >
+						
+						<div class="row-form clearfix"style="margin-top:20px;">
+                            <div class="span3" style="font-size:15px;">First Name<span style="color:red;">*</span></div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.firstName"  onkeypress="return isAlphabetKey(event)" /></div> <div class="span3" style="font-size:15px;width:190px;">Last Name</div>
+                            <div class="span3"><input type="text" ng-model="newEmployee.lastName" onkeypress="return isAlphabetKey(event)"/></div>                            
+                        </div> 
+
+					<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Email ID</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.emailId" /></div>  
+							<div class="span3" style="font-size:15px;width:190px;">Alternate Email ID</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.alternateEmailId" /></div>     							
+                        </div> 
+	 
+			<div class="row-form clearfix" >
+               <div class="span3" style="font-size:15px;">Date of Birth<span style="color:red;">*</span> </div>    
+				  <div >
+					<div class="col-md-6">
+							<div class="span3">
+								<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.dateOfBirth" onkeypress="return chkAlphNum(event)"/>
+							</div>
+					</div>
+				</div>
+				<div class="span3" style="font-size:15px;width:190px;">Date of Joining<span style="color:red;">*</span> </div>    
+				  <div>
+					<div class="col-md-6">
+						<div class="span3">
+								<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.joiningDate" onkeypress="return chkAlphNum(event)"/>
+						</div>
+					</div>
+				</div>
+
+			</div>
+	
+				<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Employee ID<span style="color:red;">*</span></div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.empNo" onkeypress="return isNumberKey(event)" /></div>   
+							<div class="span3" style="font-size:15px;width:190px;">Designation<span style="color:red;">*</span></div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.designation" onkeypress="return isAlphabetKey(event)" /></div>  							
+                        </div> 
+						
+  
+					<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">PAN Card Number<span style="color:red;">*</span></div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.panNo" /></div>    
+							<div class="span3" style="font-size:15px;width:190px;">PF Number</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.pfNumber" /></div> 							
+                        </div> 
+					<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Bank Name</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.bankName" onkeypress="return isAlphabetKey(event)" /></div>
+							<div class="span3" style="font-size:15px;width:190px;">Bank Account Number</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.bankAccountNo" onkeypress="return isNumberKey(event)" /></div>                                  
+                        </div>	
+											
+					<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Location</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.location" onkeypress="return isAlphabetKey(event)"/></div>  
+							<div class="span3" style="font-size:15px;width:190px;">Status</div>
+                            <div class="span3" > <input type="radio" name="boolVal" ng-value="true" ng-model="newEmployee.employeeStatus"  > <span style="margin-right:30px;">Active</span><input type="radio" name="boolVal" ng-value="false" ng-model="newEmployee.employeeStatus" > <span >InActive </span></div>
+													
+                        </div>						
+				<!--	<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">LOP Days</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.lopDays" /></div>                            
+                     </div>	-->
+					
+					 
+					 <div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Contact Number<span style="color:red;">*</span></div>
+                            <div class="span3"><input type="text" ng-model="newEmployee.contactNumber"  onkeypress="return isNumberKey(event)"/></div>       
+							<div class="span3" style="font-size:15px;width:190px;">Alternate Contact Number</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.alternateContactNumber"  onkeypress="return isNumberKey(event)" /></div>  							
+                     </div>
+					<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Marriage Date</div>
+                            <div class="span3"><input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.marriageDate" onkeypress="return chkAlphNum(event)"/></div>     
+							<div class="span3" style="font-size:15px;width:190px;">Emergency Contact Person</div>
+                            <div class="span3"><input type="text"  ng-model="newEmployee.emergencyContactPerson" onkeypress="return isAlphabetKey(event)"/></div> 							
+                     </div>
+					
+					 <div class="row-form clearfix">
+                          <div class="span3">Employee Image</div>
+						<div class="span3">
+						<div class="thumbnailphoto" ng-hide="$flow.files.length">
+								<img src="imgs/noImages.jpg" style="height:150px;" />
+						</div>
+						<div class="thumbnailphoto" ng-show="$flow.files.length">
+								<img class="thumbnailphoto" flow-img="$flow.files[0]"  />
+						</div>
+						 <div>
+							<a href="#" class="btn" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Select image</a>
+							<a href="#" class="btn" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">Change</a>
+							<a href="#" class="btn btn-danger" ng-show="$flow.files.length"	ng-click="$flow.cancel()">Remove</a>
+						</div>
+						
+						</div>
+
+                  </div> 
+				
+	
+   <!-- <img ng-src="{{img}}">-->
+   
+   <div class="wrapper">
+			<button ng-model="button" id="sendbutton" ng-click="addNewEmployee()" ng-disabled="(!newEmployee.firstName || !newEmployee.panNo || !newEmployee.empNo || !newEmployee.designation || !newEmployee.contactNumber || !newEmployee.dateOfBirth || !newEmployee.joiningDate)"  id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Save</button>
+			</div>
+			
+   </form>
+</div>    
+					</div>
+					<!-- Table -->
+					 <!--ng-disabled="(!newEmployee.firstName || !newEmployee.emailId || !newEmployee.dob || !newEmployee.doj  )"--> 
+				
+				
+				</div>
+				<!-- End Box -->
+				
+</form>
+			</div>
+			<!-- End Content -->
+			
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer" >
+	<div class="shell" >
+		<span class="left">&copy; 2014 - Nthdimenzion</span>
+		<span class="right">
+			Design by <a href="http://www.nthdimenzion.com/" target="_blank" >Nthdimenzion.com</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>

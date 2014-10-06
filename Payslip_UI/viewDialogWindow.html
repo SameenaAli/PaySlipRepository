@@ -1,0 +1,48 @@
+<div class="modal-dialog">
+   <div class="modal-content">
+      <div class="modal-header">
+			<button type="button" class="close" ng-click="close()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" style="font-weight:bold;">View Employee Details</h4>
+      </div>
+      <div class="modal-body">
+        <div style="margin: 0 auto; width: 100px"> <img class="thumbnailImg" style="width:100px;height:100px;" src="{{viewEmployeeDetails.empImage}}"   /></div>
+		 	<div class="table">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				
+				<tr>
+					<th>Employee No.</th><td>{{viewEmployeeDetails.empNo}}</td>
+					<th>Employee Name</th><td><h3>{{viewEmployeeDetails.firstName}}  {{viewEmployeeDetails.lastName}}</h3></td>
+					<th>Email Id</th><td>{{viewEmployeeDetails.emailId}}</td>
+					<th>Alternate Email Id</th><td>{{viewEmployeeDetails.alternateEmailId}}</td>
+					<th>Status</th><td>{{viewEmployeeDetails.employeeStatus}}</td>
+				</tr>
+				<tr>	
+					<th>PAN No.</th><td>{{viewEmployeeDetails.panNo}}</td>
+					<th>PF No.</th><td>{{viewEmployeeDetails.pfNumber}}</td>
+					<th>Bank Name</th><td>{{viewEmployeeDetails.bankName}}</td>
+					<th>Bank Details</th><td>{{viewEmployeeDetails.bankAccountNo}}</td>
+					<th>Joining Date</th><td>{{viewEmployeeDetails.joiningDate}}</td>
+				</tr>
+				<tr>
+	     				<th>Designation</th><td>{{viewEmployeeDetails.designation}}</td>
+						<th>Location</th><td>{{viewEmployeeDetails.location}}</td>
+						<th>Date Of Birth</th><td>{{viewEmployeeDetails.dateOfBirth}}</td>
+						<th>Marriage Date</th><td>{{viewEmployeeDetails.marriageDate}}</td>
+						<th>Contact No.</th><td>{{viewEmployeeDetails.contactNumber}}</td>
+				</tr>
+				<tr>
+						<th>Alternate Contact No.</th><td>{{viewEmployeeDetails.alternateContactNumber}}</td>
+						<th>Emergengy Contact Person </th><td>{{viewEmployeeDetails.emergencyContactPerson}}</td>
+				</tr>
+
+				</table>
+			</div>
+					
+      </div>
+      <div class="modal-footer">
+           <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+          
+	 </div>
+   </div>
+</div>
+ 

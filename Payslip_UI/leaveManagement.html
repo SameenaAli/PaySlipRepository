@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Leave Management</title>
+   <!-- <link href="css/bootstrapDialog.css" rel="stylesheet">-->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/daterangepicker-bs3.css" type="text/css" media="all" />
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script src="js/daterangepicker.js"></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
+
+	 <script type="text/javascript">
+     $(function() {
+			$('#reservation').daterangepicker();
+			$("#sendbutton").click(function() {
+				$('#resetForm')[0].reset();
+			
+			});
+			
+	});
+	function divFunction(){ //function in called in daterandepicker.js 108 line
+		var sDate =$("#sdate").val(); // id is added in daterangepicker.js
+		var eDate =$("#edate").val();
+		var element = angular.element($('#reservation'));
+		var controller = element.controller();
+		var scope = element.scope();
+		scope.searchEmployee.fromDate = sDate;
+		scope.searchEmployee.toDate = eDate;
+		scope.$apply(function(){
+				scope.applyDateRange(scope.searchEmployee.fromDate,scope.searchEmployee.toDate);
+		});	
+	};
+	function isNumberKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
+			return false;
+			return true;
+	}
+	function isAlphabetKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39  && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
+			return false;
+			return true;
+	}
+	function chkAlphNum(evt){
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 )
+			return false;
+			return true;
+	}
+	</script>
+	
+	<style>
+	#loaderDiv {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 1100;
+   background-color: white;
+   opacity: .6;
+}
+
+.ajax-loader {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -32px; /* -1 * image width / 2 */
+   margin-top: -32px; /* -1 * image height / 2 */
+   display: block;
+}
+.btn {
+  display: inline-block;
+  *display: inline;
+  padding: 4px 14px;
+  margin-bottom: 3px;
+  *margin-left: .3em;
+  font-size: 12px;
+  line-height: 20px;
+  *line-height: 20px;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);  
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #486B91;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5B7EA4), to(#486B91));
+  background-image: -webkit-linear-gradient(top, #5B7EA4, #486B91);
+  background-image: -o-linear-gradient(top, #5B7EA4, #486B91);
+  background-image: linear-gradient(to bottom, #5B7EA4, #486B91);
+  background-image: -moz-linear-gradient(top, #5B7EA4, #486B91);
+  background-repeat: repeat-x;
+  border: 1px solid #bbbbbb;
+  *border: 0;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #e6e6e6 #486B91 #bfbfbf;
+  border-bottom-color: #a2a2a2;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5B7EA4', endColorstr='#486B91', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-small {
+  padding: 3px 9px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.btn1 {
+  display: inline-block;
+  padding: 4px 14px;
+  margin-bottom: 3px;
+  *margin-left: .3em;
+  font-size: 12px;
+  line-height: 20px;
+  color: #FFF;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);  
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: red;
+  background-repeat: repeat-x;
+  border: 1px solid #bbbbbb;
+  *border: 0;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-color: #e6e6e6 #486B91 #bfbfbf;
+  border-bottom-color: #a2a2a2;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5B7EA4', endColorstr='#486B91', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.modal {
+display: block;
+height: auto;
+overflow: visible;
+}
+	
+
+	</style>
+
+</head>
+<body ng-app="myApp">
+<!-- Header -->
+<div id="header" >
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><a href="http://www.nthdimenzion.com/" target="_blank"><img src="imgs/logo.png"></a></h1>
+			<div id="top-navigation">
+				
+			</div>
+		</div>
+		<!-- End Logo + Top Nav -->
+		
+		<!-- Main Nav -->
+		<div id="navigation">
+			<ul>
+			    <li><a href="index.html" ><span>Generate Payslip</span></a></li>
+			    <li><a href="employeeDetails.html"><span>View Employees</span></a></li>
+			    <li><a href="newEmployee.html"><span>Add New Employee</span></a></li>
+				<li><a href="leaveManagement.html" class="active"><span>Leave Management</span></a></li>
+			   <li><a href="holidayList.html" ><span>Holiday List</span></a></li>
+			   
+			   
+			</ul>
+		</div>
+		<!-- End Main Nav -->
+	</div>
+</div>
+<!-- End Header -->
+
+<!-- Container -->
+<div id="container" ng-controller="LeaveManagement">
+ <div id="loaderDiv" loader ><img src="imgs/ajax-loader.gif" class="ajax-loader"/>
+</div>
+
+	<div class="shell">
+	<br />
+		<!-- Main -->
+		<div id="main">
+			<div class="cl">&nbsp;</div>
+			
+			<!-- Content -->
+			<div id="content">
+				
+				<!-- Box -->
+				<div class="box" style="width:1180px;position:relative;left:-80px;">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left" style="line-height:30px;font-size:15px;font-weight:normal;">Leave Management</h2>
+						
+					</div>
+					<!-- End Box Head -->	
+					<!-- Table -->
+					
+					<div class="table">
+					<div class="container">
+					<form id="resetForm">
+						<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Search By Employee ID</div>
+                            <div class="span3"><input type="text"  ng-model="searchEmployee.empNo" onkeypress="return isNumberKey(event)" /></div>
+						</div>
+						<div class="row-form clearfix">
+                            <div class="span3" style="font-size:15px;">Search By First Name</div>
+                            <div class="span3"><input type="text"  ng-model="searchEmployee.firstName" onkeypress="return isAlphabetKey(event)" /></div>
+							<div class="span3" style="font-size:15px;width:190px;">Search By Last Name</div>
+                            <div class="span3"><input type="text" ng-model="searchEmployee.lastName" onkeypress="return isAlphabetKey(event)"/></div>                            
+                        </div> 
+						<!--<div class="row-form clearfix" >
+							<div class="span3" style="font-size:15px;">From Date</div>    
+								<div class="span3" style="margin-top:-10px;"><div class="row">
+									<div class="col-md-6">
+										<p class="input-group">
+											<div class="span3">
+												<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.fromDate"/>
+											</div>
+										</p>
+									</div>
+								</div></div>
+								<div class="span3" style="font-size:15px;width:190px;">To Date</div>    
+									<div class="span3" style="margin-top:-10px;"><div class="row">
+									<div class="col-md-6">
+										<p class="input-group">
+											<div class="span3">
+												<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.toDate"/>
+											</div>
+										</p>
+									</div>
+								</div></div>
+							</div>-->
+							<div class="row-form clearfix" >
+							<div class="span3" style="font-size:15px;">Date Range</div>  
+							<div class="span3" style=""><div class="input-group" >
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control pull-right" id="reservation" ng-model="searchEmployee.dateRange" value="{{searchEmployee.dateRange}}" onclick="this.select()" onkeypress="return chkAlphNum(event)"/> 
+                                        </div></div> 
+
+							</div>		
+								</form>
+							
+				<div class="wrapper">
+						<button ng-model="button"  ng-click="submitSearch()"  id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Submit</button>
+			</div>
+			 <div ng-show="boolMsg" >
+						<h2 style="display:block;left-margin:20px;color:red;">No Records Found</h2>
+					 </div>
+					 </div>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" ng-show="!boolMsg">
+							<tr>
+								<th>Employee ID</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Total</th>
+								<th>Availed</th>
+								<th>LOP</th>
+								<th>Balance</th>
+								<th></th>
+								<th></th>
+							</tr>
+							
+								<tr ng-repeat="leave in employeeDetails" >
+								<td>{{leave.empNo}}</td>
+								<td>{{leave.firstName}}</td>
+								<td>{{leave.lastName}}</td>
+								<td>{{leave.totalLeaves}}</td>
+								<td>{{leave.encashedLeaves}}</td>
+								<td>{{leave.lop}}</td>
+								<td>{{leave.balanceLeaves}}</td>
+								<td><a ng-click="registerLeaves(leave)" style="cursor: pointer;text-decoration:none;"  class="btn btn-small" title="Register">Register Leave</a></td>
+								
+								<td><a ng-click="openDialog({{leave.empNo}})"  style="cursor: pointer;text-decoration:none;"  class="btn btn-small" title="View">View</a></td>							
+							</tr>
+					</table>
+						
+						
+						<!-- Pagging -->
+						<!--<div class="pagging">
+							<!--<div class="left">Showing 1-12 of 44</div>
+							<div class="right">
+								<a href="#">Previous</a>
+								<a href="#">1</a>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#">4</a>
+								<a href="#">245</a>
+								<span>...</span>
+								<a href="#">Next</a>
+								<a href="#">View all</a>
+							</div>
+						</div>-->
+						<!-- End Pagging -->
+						
+					</div>
+					<!-- Table -->
+					
+				</div>
+				<!-- End Box -->
+				
+
+			</div>
+			<!-- End Content -->
+			
+			
+			<div class="cl">&nbsp;</div>			
+		</div>
+		<!-- Main -->
+	</div>
+</div>
+<!-- End Container -->
+
+<!-- Footer -->
+<div id="footer" >
+	<div class="shell" >
+		<span class="left">&copy; 2014 - Nthdimenzion</span>
+		<span class="right">
+			Design by <a href="http://www.nthdimenzion.com/" target="_blank" >Nthdimenzion.com</a>
+		</span>
+	</div>
+</div>
+<!-- End Footer -->
+	
+</body>
+</html>
