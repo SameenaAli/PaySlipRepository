@@ -5,7 +5,7 @@
 	<title>Payslip Management</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 
-<style type="text/css">
+<style>
 #loaderDiv {
    position: fixed;
    top: 0;
@@ -202,34 +202,27 @@
 			<div class="wrapper">
 				<button ng-model="button"  ng-click="sendMail()" ng-disabled="(!employeeDetails.selectedEmpId)" id="sendbutton" style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Send Mail</button>
 			</div>
-			
-				
-				</div>
+		</div>
 				<!-- End Box -->
-				
-</form>
-			</div>
-			<!-- End Content -->
-			
-			
-			<div class="cl">&nbsp;</div>			
+		</form>
+		</div>
+	<!-- End Content -->
+	<div class="cl">&nbsp;</div>			
 		</div>
 		<!-- Main -->
 	</div>
 </div>
 <!-- End Container -->
-
 <!-- Footer -->
 <div id="footer" >
-	<script async type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script  type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 	<script  data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
 	<script  src="js/ui-bootstrap-tpls-0.5.0.js"></script>
 	<script  src="js/dist/ng-flow-standalone.js"></script>
 	<script  type="text/javascript" src="js/moment.js"></script>
     	<script  type="text/javascript" src="app.js"></script>
 	<script  type="text/javascript" src="js/underscore-min.js"></script>
-	
-	<script type='text/javascript'>
+		<script type='text/javascript'>
 	var PFValue;
 	$(document).ready(function () {
 		$("#sendbutton").click(function() {
@@ -325,8 +318,7 @@
         $("#sums").html(sum1.toFixed(2));
 		
     }
-	
-	</script>
+</script>
 	<div class="shell" >
 		<span class="left">&copy; 2014 - Nthdimenzion</span>
 		<span class="right">
@@ -335,6 +327,5 @@
 	</div>
 </div>
 <!-- End Footer -->
-	
 </body>
 </html>
