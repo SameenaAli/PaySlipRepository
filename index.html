@@ -4,112 +4,7 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Payslip Management</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
-	<script src="js/dist/ng-flow-standalone.js"></script>
-	<script type="text/javascript" src="js/moment.js"></script>
-    <script  type="text/javascript" src="app.js"></script>
-	<script  type="text/javascript" src="js/underscore-min.js"></script>
 	
-	<script type='text/javascript'>
-	var PFValue;
-	$(document).ready(function () {
-		$("#sendbutton").click(function() {
-		    $("#sum").html(0);
-			$("#sums").html(0);
-			$('#resetForm')[0].reset();
-			$('#empName').each(function(){
-				$(this).prop('selectedIndex',0);
-			});
-			$('#lopDays').each(function(){
-				$(this).prop('selectedIndex',0);
-			});
-			
-   		}); 
-	});	
-	$(document).ready(function(){
- 
-       
-        $(".txt").each(function() {
-			$(this).keyup(function(){
-                calculateSum();
-            });
-        });
- 
-    });
- function isNumberKey(evt){
-	
-    var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-    if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=46 && (charCode < 48 || charCode > 57 ))
-        return false;
-    return true;
-}
-
-    function calculateSum() {
- 
-        var sum = 2050;
-		   $(".txt").each(function() {
-			if(!isNaN(this.value) && this.value.length!=0) {
-                sum += parseFloat(this.value);
-            }
- 
-        });
-      	$("#sum").each(function() {
-			var element = angular.element($('#sum'));
-			var controller = element.controller();
-			var scope = element.scope();
-			scope.employeeData.grossEarnings = sum.toFixed(2);
-			PFValue=scope.employeeData.pfEmployee;
-			scope.$apply(function(){
-				scope.updateGrossEarning(scope.employeeData.grossEarnings);
-			});
-		});
-		  
-        $("#sum").html(sum.toFixed(2));
-		
-    }
-	$(document).ready(function(){
- 
-        
-        $(".numericData").each(function() {
-				
-            $(this).keyup(function(){
-                calculateSum1();
-            });
-        });
- 
-    });
- 
-	function calculateSum1() {
-//alert(PFValue);
-        var sum1 = PFValue + 200;
-        
-        $(".numericData").each(function() {
- 
-           
-            if(!isNaN(this.value) && this.value.length!=0) {
-                sum1 += parseFloat(this.value);
-            }
- 
-        });
-		
-		$("#sums").each(function() {
-			var element = angular.element($('#sums'));
-			var controller = element.controller();
-			var scope = element.scope();
-			scope.employeeData.totalDeductions = sum1.toFixed(2);
-			scope.$apply(function(){
-				scope.updateTotalDeduction(scope.employeeData.totalDeductions);
-			});
-		});
-       
-        $("#sums").html(sum1.toFixed(2));
-		
-    }
-	
-	</script>
 	<style>
 	#loaderDiv {
    position: fixed;
@@ -316,6 +211,111 @@
 <!-- End Container -->
 <!-- Footer -->
 <div id="footer" >
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>
+       <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
+	
+	<script type='text/javascript'>
+	var PFValue;
+	$(document).ready(function () {
+		$("#sendbutton").click(function() {
+		    $("#sum").html(0);
+			$("#sums").html(0);
+			$('#resetForm')[0].reset();
+			$('#empName').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			$('#lopDays').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			
+   		}); 
+	});	
+	$(document).ready(function(){
+ 
+       
+        $(".txt").each(function() {
+			$(this).keyup(function(){
+                calculateSum();
+            });
+        });
+ 
+    });
+ function isNumberKey(evt){
+	
+    var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+    if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=46 && (charCode < 48 || charCode > 57 ))
+        return false;
+    return true;
+}
+
+    function calculateSum() {
+ 
+        var sum = 2050;
+		   $(".txt").each(function() {
+			if(!isNaN(this.value) && this.value.length!=0) {
+                sum += parseFloat(this.value);
+            }
+ 
+        });
+      	$("#sum").each(function() {
+			var element = angular.element($('#sum'));
+			var controller = element.controller();
+			var scope = element.scope();
+			scope.employeeData.grossEarnings = sum.toFixed(2);
+			PFValue=scope.employeeData.pfEmployee;
+			scope.$apply(function(){
+				scope.updateGrossEarning(scope.employeeData.grossEarnings);
+			});
+		});
+		  
+        $("#sum").html(sum.toFixed(2));
+		
+    }
+	$(document).ready(function(){
+ 
+        
+        $(".numericData").each(function() {
+				
+            $(this).keyup(function(){
+                calculateSum1();
+            });
+        });
+ 
+    });
+ 
+	function calculateSum1() {
+//alert(PFValue);
+        var sum1 = PFValue + 200;
+        
+        $(".numericData").each(function() {
+ 
+           
+            if(!isNaN(this.value) && this.value.length!=0) {
+                sum1 += parseFloat(this.value);
+            }
+ 
+        });
+		
+		$("#sums").each(function() {
+			var element = angular.element($('#sums'));
+			var controller = element.controller();
+			var scope = element.scope();
+			scope.employeeData.totalDeductions = sum1.toFixed(2);
+			scope.$apply(function(){
+				scope.updateTotalDeduction(scope.employeeData.totalDeductions);
+			});
+		});
+       
+        $("#sums").html(sum1.toFixed(2));
+		
+    }
+</script>
 	<div class="shell" >
 		<span class="left">&copy; 2014 - Nthdimenzion</span>
 		<span class="right">
