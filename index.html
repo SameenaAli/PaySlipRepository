@@ -270,7 +270,83 @@ caption{-moz-border-bottom-colors:none;-moz-border-left-colors:none;-moz-border-
 <script  type="text/javascript" src="app.js"></script>
 	<script  type="text/javascript" src="js/underscore-min.js"></script>
 	<script type='text/javascript'>
-	function isNumberKey(e){var a=e.which?e.which:e.keyCode;return a>31&&8!=a&&0!=a&&46!=a&&(48>a||a>57)?!1:!0}function calculateSum(){var e=2050;$(".txt").each(function(){isNaN(this.value)||0==this.value.length||(e+=parseFloat(this.value))}),$("#sum").each(function(){var a=angular.element($("#sum")),t=(a.controller(),a.scope());t.employeeData.grossEarnings=e.toFixed(2),PFValue=t.employeeData.pfEmployee,t.$apply(function(){t.updateGrossEarning(t.employeeData.grossEarnings)})}),$("#sum").html(e.toFixed(2))}function calculateSum1(){var e=PFValue+200;$(".numericData").each(function(){isNaN(this.value)||0==this.value.length||(e+=parseFloat(this.value))}),$("#sums").each(function(){var a=angular.element($("#sums")),t=(a.controller(),a.scope());t.employeeData.totalDeductions=e.toFixed(2),t.$apply(function(){t.updateTotalDeduction(t.employeeData.totalDeductions)})}),$("#sums").html(e.toFixed(2))}var PFValue;$(document).ready(function(){$(".txt").each(function(){$(this).keyup(function(){calculateSum()})})}),$(document).ready(function(){$(".numericData").each(function(){$(this).keyup(function(){calculateSum1()})})});
+	var PFValue;
+	$(document).ready(function () {
+		$("#sendbutton").click(function() {
+		    $("#sum").html(0);
+			$("#sums").html(0);
+			$('#resetForm')[0].reset();
+			$('#empName').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			$('#lopDays').each(function(){
+				$(this).prop('selectedIndex',0);
+			});
+			
+   		}); 
+	});	
+	$(document).ready(function(){
+         $(".txt").each(function() {
+			$(this).keyup(function(){
+                calculateSum();
+            });
+        });
+     });
+ function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+    if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=46 && (charCode < 48 || charCode > 57 ))
+        return false;
+    return true;
+}
+    function calculateSum() {
+        var sum = 2050;
+	 $(".txt").each(function() {
+	if(!isNaN(this.value) && this.value.length!=0) {
+               sum += parseFloat(this.value);
+       }
+    });
+     $("#sum").each(function() {
+	var element = angular.element($('#sum'));
+	var controller = element.controller();
+	var scope = element.scope();
+	scope.employeeData.grossEarnings = sum.toFixed(2);
+	PFValue=scope.employeeData.pfEmployee;
+		scope.$apply(function(){
+				scope.updateGrossEarning(scope.employeeData.grossEarnings);
+			});
+		});
+		  
+        $("#sum").html(sum.toFixed(2));
+		
+    }
+	$(document).ready(function(){
+         $(".numericData").each(function() {
+	     $(this).keyup(function(){
+                calculateSum1();
+            });
+        });
+ 
+    });
+ 	function calculateSum1() {
+//alert(PFValue);
+        var sum1 = PFValue + 200;
+        $(".numericData").each(function() {
+             if(!isNaN(this.value) && this.value.length!=0) {
+                sum1 += parseFloat(this.value);
+            }
+         });
+	$("#sums").each(function() {
+		var element = angular.element($('#sums'));
+		var controller = element.controller();
+		var scope = element.scope();
+		scope.employeeData.totalDeductions = sum1.toFixed(2);
+		scope.$apply(function(){
+			scope.updateTotalDeduction(scope.employeeData.totalDeductions);
+			});
+		});
+       
+        $("#sums").html(sum1.toFixed(2));
+	  }
 	</script>
 </body>
 </html>
