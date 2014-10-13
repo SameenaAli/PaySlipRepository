@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ui.bootstrap','flow']);
+var myApp = angular.module('myApp',['flow']);
 
 myApp.config(['$httpProvider', function($httpProvider) {
 $httpProvider.interceptors.push('httpInterceptor');
