@@ -6,40 +6,7 @@
    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
-    <script type='text/javascript' src='js/bootstrap-datepicker.js'></script>
-    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
-	<script src="js/dist/ng-flow-standalone.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>	
-	<script type="text/javascript" src="js/moment.js"></script>		
-    <script  type="text/javascript" src="app.js"></script>
-	<script  type="text/javascript" src="js/underscore-min.js"></script>
-	<script type='text/javascript'>
-	
-	function getQueryParam(param) {
-    var result =  window.location.search.match(
-        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
-    );
-
-    return result ? result[3] : false;
-	}
-
-	var id=getQueryParam("id");
-	//var empid = [{"id": id}];
-	var empid=id;
-	
-	
-	function chkAlphNum(evt){
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0   )
-			return false;
-			return true;
-	}
-	</script>
-	<style>
+		<style>
 	#loaderDiv {
    position: fixed;
    top: 0;
@@ -252,22 +219,6 @@ overflow: visible;
 				<button ng-model="button"  ng-click="cancelLeave()"   style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Cancel</button>
 			</div>
 					</div>
-						<!-- Pagging -->
-						<!--<div class="pagging">
-							<!--<div class="left">Showing 1-12 of 44</div>
-							<div class="right">
-								<a href="#">Previous</a>
-								<a href="#">1</a>
-								<a href="#">2</a>
-								<a href="#">3</a>
-								<a href="#">4</a>
-								<a href="#">245</a>
-								<span>...</span>
-								<a href="#">Next</a>
-								<a href="#">View all</a>
-							</div>
-						</div>-->
-						<!-- End Pagging -->
 						
 					</div>
 					<!-- Table -->
@@ -297,6 +248,39 @@ overflow: visible;
 	</div>
 </div>
 <!-- End Footer -->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js" defer></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" defer data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js" defer></script>
+    <script type='text/javascript' src='js/bootstrap-datepicker.js' defer></script>
+    <script type='text/javascript' src='js/jquery-ui.min.js' defer></script>
+	<script src="js/dist/ng-flow-standalone.js" defer></script>
+	<script type="text/javascript" src="js/bootstrap.js" defer></script>	
+	<script type="text/javascript" src="js/moment.js" defer></script>		
+    <script  type="text/javascript" src="app.js" defer></script>
+	<script  type="text/javascript" src="js/underscore-min.js" defer></script>
+	<script type='text/javascript'>
+	
+	function getQueryParam(param) {
+    var result =  window.location.search.match(
+        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
+    );
+
+    return result ? result[3] : false;
+	}
+
+	var id=getQueryParam("id");
+	//var empid = [{"id": id}];
+	var empid=id;
+	
+	
+	function chkAlphNum(evt){
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0   )
+			return false;
+			return true;
+	}
+	</script>
 	
 </body>
 </html>
