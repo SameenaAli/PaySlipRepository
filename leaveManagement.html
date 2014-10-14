@@ -7,61 +7,6 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/daterangepicker-bs3.css" type="text/css" media="all" />
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>	
-	<script src="js/daterangepicker.js"></script>
-	<script src="js/dist/ng-flow-standalone.js"></script>
-	<script type="text/javascript" src="js/moment.js"></script>		
-    <script  type="text/javascript" src="app.js"></script>
-	<script  type="text/javascript" src="js/underscore-min.js"></script>
-
-	 <script type="text/javascript">
-     $(function() {
-			$('#reservation').daterangepicker();
-			$("#sendbutton").click(function() {
-				$('#resetForm')[0].reset();
-			
-			});
-			
-	});
-	function divFunction(){ //function in called in daterandepicker.js 108 line
-		var sDate =$("#sdate").val(); // id is added in daterangepicker.js
-		var eDate =$("#edate").val();
-		var element = angular.element($('#reservation'));
-		var controller = element.controller();
-		var scope = element.scope();
-		scope.searchEmployee.fromDate = sDate;
-		scope.searchEmployee.toDate = eDate;
-		scope.$apply(function(){
-				scope.applyDateRange(scope.searchEmployee.fromDate,scope.searchEmployee.toDate);
-		});	
-	};
-	function isNumberKey(evt){
-	
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
-			return false;
-			return true;
-	}
-	function isAlphabetKey(evt){
-	
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39  && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
-			return false;
-			return true;
-	}
-	function chkAlphNum(evt){
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0 )
-			return false;
-			return true;
-	}
-	</script>
 	
 	<style>
 	#loaderDiv {
@@ -345,6 +290,61 @@ overflow: visible;
 	</div>
 </div>
 <!-- End Footer -->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script src="js/daterangepicker.js"></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
+
+	 <script type="text/javascript">
+     $(function() {
+			$('#reservation').daterangepicker();
+			$("#sendbutton").click(function() {
+				$('#resetForm')[0].reset();
+			
+			});
+			
+	});
+	function divFunction(){ //function in called in daterandepicker.js 108 line
+		var sDate =$("#sdate").val(); // id is added in daterangepicker.js
+		var eDate =$("#edate").val();
+		var element = angular.element($('#reservation'));
+		var controller = element.controller();
+		var scope = element.scope();
+		scope.searchEmployee.fromDate = sDate;
+		scope.searchEmployee.toDate = eDate;
+		scope.$apply(function(){
+				scope.applyDateRange(scope.searchEmployee.fromDate,scope.searchEmployee.toDate);
+		});	
+	};
+	function isNumberKey(evt){
 	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
+			return false;
+			return true;
+	}
+	function isAlphabetKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39  && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
+			return false;
+			return true;
+	}
+	function chkAlphNum(evt){
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 )
+			return false;
+			return true;
+	}
+	</script>
+		
 </body>
 </html>
