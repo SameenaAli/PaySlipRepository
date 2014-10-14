@@ -3,10 +3,66 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Leave Management</title>
-   	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+   <!-- <link href="css/bootstrapDialog.css" rel="stylesheet">-->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="css/daterangepicker-bs3.css" type="text/css" media="all" />
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script src="js/daterangepicker.js"></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
 
+	 <script type="text/javascript">
+     $(function() {
+			$('#reservation').daterangepicker();
+			$("#sendbutton").click(function() {
+				$('#resetForm')[0].reset();
+			
+			});
+			
+	});
+	function divFunction(){ //function in called in daterandepicker.js 108 line
+		var sDate =$("#sdate").val(); // id is added in daterangepicker.js
+		var eDate =$("#edate").val();
+		var element = angular.element($('#reservation'));
+		var controller = element.controller();
+		var scope = element.scope();
+		scope.searchEmployee.fromDate = sDate;
+		scope.searchEmployee.toDate = eDate;
+		scope.$apply(function(){
+				scope.applyDateRange(scope.searchEmployee.fromDate,scope.searchEmployee.toDate);
+		});	
+	};
+	function isNumberKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
+			return false;
+			return true;
+	}
+	function isAlphabetKey(evt){
+	
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39  && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
+			return false;
+			return true;
+	}
+	function chkAlphNum(evt){
+		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
+	
+		if (charCode > 31 && charCode !=8 && charCode !=0 )
+			return false;
+			return true;
+	}
+	</script>
+	
 	<style>
 	#loaderDiv {
    position: fixed;
@@ -175,6 +231,28 @@ overflow: visible;
 							<div class="span3" style="font-size:15px;width:190px;">Search By Last Name</div>
                             <div class="span3"><input type="text" ng-model="searchEmployee.lastName" onkeypress="return isAlphabetKey(event)"/></div>                            
                         </div> 
+						<!--<div class="row-form clearfix" >
+							<div class="span3" style="font-size:15px;">From Date</div>    
+								<div class="span3" style="margin-top:-10px;"><div class="row">
+									<div class="col-md-6">
+										<p class="input-group">
+											<div class="span3">
+												<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.fromDate"/>
+											</div>
+										</p>
+									</div>
+								</div></div>
+								<div class="span3" style="font-size:15px;width:190px;">To Date</div>    
+									<div class="span3" style="margin-top:-10px;"><div class="row">
+									<div class="col-md-6">
+										<p class="input-group">
+											<div class="span3">
+												<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy"  datepicker-options="dateOptions" ng-required="true" close-text="Close"  ng-model="newEmployee.toDate"/>
+											</div>
+										</p>
+									</div>
+								</div></div>
+							</div>-->
 							<div class="row-form clearfix" >
 							<div class="span3" style="font-size:15px;">Date Range</div>  
 							<div class="span3" style=""><div class="input-group" >
@@ -221,6 +299,22 @@ overflow: visible;
 							</tr>
 					</table>
 						
+						
+						<!-- Pagging -->
+						<!--<div class="pagging">
+							<!--<div class="left">Showing 1-12 of 44</div>
+							<div class="right">
+								<a href="#">Previous</a>
+								<a href="#">1</a>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#">4</a>
+								<a href="#">245</a>
+								<span>...</span>
+								<a href="#">Next</a>
+								<a href="#">View all</a>
+							</div>
+						</div>-->
 						<!-- End Pagging -->
 						
 					</div>
@@ -251,61 +345,6 @@ overflow: visible;
 	</div>
 </div>
 <!-- End Footer -->
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js" defer></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" defer data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js" defer></script>
-	<script type="text/javascript" src="js/bootstrap.js" defer></script>	
-	<script src="js/daterangepicker.js" defer></script>
-	<script src="js/dist/ng-flow-standalone.js" defer></script>
-	<script type="text/javascript" src="js/moment.js" defer></script>		
-    <script  type="text/javascript" src="app.js" defer></script>
-	<script  type="text/javascript" src="js/underscore-min.js" defer></script>
-
-	 <script type="text/javascript">
-     $(function() {
-			$('#reservation').daterangepicker();
-			$("#sendbutton").click(function() {
-				$('#resetForm')[0].reset();
-			
-			});
-			
-	});
-	function divFunction(){ //function in called in daterandepicker.js 108 line
-		var sDate =$("#sdate").val(); // id is added in daterangepicker.js
-		var eDate =$("#edate").val();
-		var element = angular.element($('#reservation'));
-		var controller = element.controller();
-		var scope = element.scope();
-		scope.searchEmployee.fromDate = sDate;
-		scope.searchEmployee.toDate = eDate;
-		scope.$apply(function(){
-				scope.applyDateRange(scope.searchEmployee.fromDate,scope.searchEmployee.toDate);
-		});	
-	};
-	function isNumberKey(evt){
 	
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0 && charCode !=37 && charCode !=39 && (charCode < 48 || charCode > 57 ))
-			return false;
-			return true;
-	}
-	function isAlphabetKey(evt){
-	
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0  && charCode !=32 && charCode !=37 && charCode !=39  && (charCode < 97 || charCode > 122 ) && (charCode < 65 || charCode > 90))
-			return false;
-			return true;
-	}
-	function chkAlphNum(evt){
-		var charCode = (evt.which) ? evt.which : evt.keyCode; //event.keyCode
-	
-		if (charCode > 31 && charCode !=8 && charCode !=0 )
-			return false;
-			return true;
-	}
-	</script>
-		
 </body>
 </html>
