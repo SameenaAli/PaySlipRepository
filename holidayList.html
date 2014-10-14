@@ -3,17 +3,9 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>Payslip Management</title>
-    <link href="css/bootstrapDialog.css" rel="stylesheet">
+    <!--<link href="css/bootstrapDialog.css" rel="stylesheet">-->
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>	
-	<script src="js/dist/ng-flow-standalone.js"></script>
-	<script type="text/javascript" src="js/moment.js"></script>		
-    <script  type="text/javascript" src="app.js"></script>
-	<script  type="text/javascript" src="js/underscore-min.js"></script>
-
+	
 	<style>
 	#loaderDiv {
    position: fixed;
@@ -34,82 +26,7 @@
    margin-top: -32px; /* -1 * image height / 2 */
    display: block;
 }
-.btn {
-  display: inline-block;
-  *display: inline;
-  padding: 4px 14px;
-  margin-bottom: 3px;
-  *margin-left: .3em;
-  font-size: 12px;
-  line-height: 20px;
-  *line-height: 20px;
-  color: #FFF;
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);  
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: #486B91;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5B7EA4), to(#486B91));
-  background-image: -webkit-linear-gradient(top, #5B7EA4, #486B91);
-  background-image: -o-linear-gradient(top, #5B7EA4, #486B91);
-  background-image: linear-gradient(to bottom, #5B7EA4, #486B91);
-  background-image: -moz-linear-gradient(top, #5B7EA4, #486B91);
-  background-repeat: repeat-x;
-  border: 1px solid #bbbbbb;
-  *border: 0;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  border-color: #e6e6e6 #486B91 #bfbfbf;
-  border-bottom-color: #a2a2a2;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5B7EA4', endColorstr='#486B91', GradientType=0);
-  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-  *zoom: 1;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-.btn-small {
-  padding: 3px 9px;
-  font-size: 12px;
-  line-height: 18px;
-}
-.btn1 {
-  display: inline-block;
-  padding: 4px 14px;
-  margin-bottom: 3px;
-  *margin-left: .3em;
-  font-size: 12px;
-  line-height: 20px;
-  color: #FFF;
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);  
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: red;
-  background-repeat: repeat-x;
-  border: 1px solid #bbbbbb;
-  *border: 0;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  border-color: #e6e6e6 #486B91 #bfbfbf;
-  border-bottom-color: #a2a2a2;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#5B7EA4', endColorstr='#486B91', GradientType=0);
-  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-  *zoom: 1;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
 
-.modal {
-display: block;
-height: auto;
-overflow: visible;
-}
 .fontFamily{
 font-family:"Comic Sans MS", cursive, sans-serif;
 font-weight:bold;
@@ -234,6 +151,14 @@ font-weight:bold;
 	</div>
 </div>
 <!-- End Footer -->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js" defer></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" defer data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js" defer></script>
+<!--	<script type="text/javascript" src="js/bootstrap.js"></script>	-->
+	<script src="js/dist/ng-flow-standalone.js" defer></script>
+<!--	<script type="text/javascript" src="js/moment.js"></script>-->		
+    <script  type="text/javascript" src="app.js" defer></script>
+	<script  type="text/javascript" src="js/underscore-min.js" defer></script>
 	
 </body>
 </html>
