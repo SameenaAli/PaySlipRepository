@@ -6,55 +6,6 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<link href="css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
-	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
-    <script type='text/javascript' src='js/bootstrap-datepicker.js'></script>
-    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
-	<script src="js/dist/ng-flow-standalone.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>	
-	<script type="text/javascript" src="js/moment.js"></script>		
-    <script  type="text/javascript" src="app.js"></script>
-	<script  type="text/javascript" src="js/underscore-min.js"></script>
-	
-	<script type='text/javascript'>
-	
-	function getQueryParam(param) {
-    var result =  window.location.search.match(
-        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
-    );
-
-    return result ? result[3] : false;
-	}
-
-	var id=getQueryParam("id");
-	//var empid = [{"id": id}];
-	var empid=id;
-		
-
-	/*$(function() {
-		$("#dp3").bootdatepicker();
-		$("#dp4").bootdatepicker();
-		$("#sendbutton").click(function() {
-		   var dob =$("#dob").val();
-		   var doj = $("#doj").val();
-		   var element = angular.element($('#sendbutton'));
-		   var controller = element.controller();
-			var scope = element.scope();
-			scope.newEmployee.dateOfBirth = dob;
-			scope.newEmployee.joiningDate = doj;
-		});
-		$("#load").click(function() {
-			var image = $("#uploadPhoto").val();
-			alert(image);
-		});
-
-	});*/
-		
-
-		
-  
-	</script>
 		 <style>
     .thumbnailphoto  {
       max-width: 200px; max-height: 150px;min-height:150px;min-width:200px; line-height: 20px; margin-bottom: 5px;
@@ -203,11 +154,6 @@
                             <div class="span3"> <input type="radio" name="boolVal" ng-value="true" ng-model="newEmployee.employeeStatus" > <span style="margin-right:30px;">Active</span><input type="radio" name="boolVal" ng-value="false" ng-model="newEmployee.employeeStatus" > <span>InActive </span></div>
 												
                         </div>						
-					<!--<div class="row-form clearfix">
-                            <div class="span3" style="font-size:15px;">LOP Days</div>
-                            <div class="span3"><input type="text"  ng-model="newEmployee.lopDays" /></div>                            
-                     </div>	-->
-						
 					<div class="row-form clearfix">
                             <div class="span3" style="font-size:15px;">Contact Number</div>
                             <div class="span3"><input type="text" ng-model="newEmployee.contactNumber"/></div>       
@@ -241,12 +187,10 @@
                         </div> 
 
 	
-   <!-- <img ng-src="{{img}}">-->
    </form>
 </div>    
 					</div>
 					<!-- Table -->
-					 <!--ng-disabled="(!newEmployee.firstName || !newEmployee.emailId || !newEmployee.dob || !newEmployee.doj  )"--> 
 			<div class="wrapper">
 <button ng-model="button" id="sendbutton"  ng-click="updateEmployee()"  style="font-size:16px;padding:7px 11px 7px 11px; cursor:pointer;box-shadow: 1px 1px 1px #888888; margin:20px;">Update</button>
 			</div>
@@ -277,6 +221,31 @@
 	</div>
 </div>
 <!-- End Footer -->
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script data-require="angular.js@1.0.x" src="js/angular.js" data-semver="1.1.4"></script>
+	<script src="js/ui-bootstrap-tpls-0.5.0.js"></script>
+    <script type='text/javascript' src='js/bootstrap-datepicker.js'></script>
+    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
+	<script src="js/dist/ng-flow-standalone.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>	
+	<script type="text/javascript" src="js/moment.js"></script>		
+    <script  type="text/javascript" src="app.js"></script>
+	<script  type="text/javascript" src="js/underscore-min.js"></script>
 	
+	<script type='text/javascript'>
+	
+	function getQueryParam(param) {
+    var result =  window.location.search.match(
+        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
+    );
+
+    return result ? result[3] : false;
+	}
+
+	var id=getQueryParam("id");
+	//var empid = [{"id": id}];
+	var empid=id;
+	</script>
+		
 </body>
 </html>
